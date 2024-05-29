@@ -35,7 +35,7 @@ const Order = ({ order, updateOrderStatus }) => {
           variant="contained"
           color="success"
           onClick={() => {
-            updateOrderStatus(order.id, "PENDING");
+            updateOrderStatus(order.orderId, "PENDING");
           }}
         >
           Pending
@@ -43,14 +43,14 @@ const Order = ({ order, updateOrderStatus }) => {
         <Button
           variant="contained"
           color="success"
-          onClick={() => updateOrderStatus(order.id, "IN_PROGRESS")}
+          onClick={() => updateOrderStatus(order.orderId, "IN_PROGRESS")}
         >
           In progress
         </Button>
         <Button
           variant="contained"
           color="success"
-          onClick={() => updateOrderStatus(order.id, "COMPLETED")}
+          onClick={() => updateOrderStatus(order.orderId, "COMPLETED")}
         >
           Completed
         </Button>
