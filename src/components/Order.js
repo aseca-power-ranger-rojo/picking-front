@@ -21,7 +21,7 @@ const Order = ({ order, updateOrderStatus }) => {
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Typography variant="h5" component="div">
           Order ID:
-          <Typography variant="body1">{order.id}</Typography>
+          <Typography variant="body1">{order.orderId}</Typography>
         </Typography>
         <Typography variant="h5" component="div">
           Picker:
