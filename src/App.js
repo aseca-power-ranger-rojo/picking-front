@@ -14,7 +14,7 @@ const App = () => {
     orderStatus(orderId, newStatus).then(() => {
       setOrders(
         orders.map((order) =>
-          order.id === orderId ? { ...order, status: newStatus } : order
+          order.orderId === orderId ? { ...order, status: newStatus } : order
         )
       );
     });
