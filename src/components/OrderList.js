@@ -1,10 +1,8 @@
-// MainContent.js
 import React from "react";
 import { Paper, Typography, Button, Box } from "@mui/material";
 import { Order } from "./Order";
-import { ReplayOutlined } from "@mui/icons-material";
 
-const OrderList = ({ orders, pickers }) => {
+const OrderList = ({ orders, updateOrderStatus }) => {
   return (
     <Paper
       sx={{
@@ -23,7 +21,11 @@ const OrderList = ({ orders, pickers }) => {
         Power Ranger Rojo's PICKING
       </Typography>
       {orders.map((order) => (
-        <Order key={order.id} {...order} pickers={pickers} />
+        <Order
+          key={order.id}
+          order={order}
+          updateOrderStatus={updateOrderStatus}
+        />
       ))}
     </Paper>
   );

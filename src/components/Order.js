@@ -1,14 +1,12 @@
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import React, { useState } from "react";
 import StatusPill from "./StatusPill";
 import { Box, Button, Typography } from "@mui/material";
 
-const Order = ({ id, status, pickers }) => {
-  console.log(pickers)
+const Order = ({ order, updateOrderStatus }) => {
   return (
     <Card
-      id={id}
+      id={order.id}
       sx={{
         width: "60%",
         height: 100,
@@ -20,21 +18,44 @@ const Order = ({ id, status, pickers }) => {
         padding: "16px 24px",
       }}
     >
-      <Typography variant="h5" component="div">
-        Order ID: {id}
-      </Typography>
-      <Box sx={{display:'flex', gap:'8px'}}>
-        <Button variant="contained" color="success">
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Typography variant="h5" component="div">
+          Order ID:
+          <Typography variant="body1">{order.id}</Typography>
+        </Typography>
+        <Typography variant="h5" component="div">
+          Picker:
+          <Typography variant="body1">
+            {order.picker.name} {order.picker.surname}
+          </Typography>
+        </Typography>
+      </Box>
+      <Box sx={{ display: "flex", gap: "8px" }}>
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => {
+            updateOrderStatus(order.id, "PENDING");
+          }}
+        >
           Pending
         </Button>
-        <Button variant="contained" color="success">
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => updateOrderStatus(order.id, "IN_PROGRESS")}
+        >
           In progress
         </Button>
-        <Button variant="contained" color="success">
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => updateOrderStatus(order.id, "COMPLETED")}
+        >
           Completed
         </Button>
       </Box>
-      <StatusPill status={status} />
+      <StatusPill status={order.status} />
     </Card>
   );
 };

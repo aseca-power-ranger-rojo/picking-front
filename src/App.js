@@ -1,28 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import OrderList from "./components/OrderList";
-
+import { getOrders, orderStatus } from "./services";
 
 const App = () => {
-  const pickers = [
-    { id: "1", name: "Pedro", surname: "Elizalde" },
-    { id: "2", name: "Manuel", surname: "Hernandez" },
-  ];
+  const [orders, setOrders] = useState([]);
 
-  const orders = [
-    { id: "1", pickerId: "1", status: "PENDING" },
-    { id: "2", pickerId: "2", status: "COMPLETED" },
-    { id: "3", pickerId: "1", status: "COMPLETED" },
-    { id: "4", pickerId: "1", status: "IN_PROGRESS" },
-    { id: "5", pickerId: "2", status: "PENDING" },
-    { id: "6", pickerId: "2", status: "IN_PROGRESS" },
-  ];
+  useEffect(() => {
+    getOrders().then((response) => setOrders(response.data));
+  }, []);
 
+  const updateOrderStatus = (orderId, newStatus) => {
+    orderStatus(orderId, newStatus).then(() => {
+      setOrders(
+        orders.map((order) =>
+          order.id === orderId ? { ...order, status: newStatus } : order
+        )
+      );
+    });
+  };
 
   return (
     <div className="App">
       <Box sx={{ display: "flex", minHeight: "100vh" }}>
-        <OrderList orders={orders} pickers={pickers} />
+        <OrderList orders={orders} updateOrderStatus={updateOrderStatus} />
       </Box>
     </div>
   );
