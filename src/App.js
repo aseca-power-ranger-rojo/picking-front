@@ -17,6 +17,8 @@ const App = () => {
           order.orderId === orderId ? { ...order, status: newStatus } : order
         )
       );
+    }).catch((e) =>{
+      alert("Failed to update order status", e.message);
     });
   };
 
