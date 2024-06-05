@@ -18,7 +18,7 @@ const App = () => {
         )
       );
     }).catch((e) =>{
-      alert("Failed to update order status", e.message);
+      alert(e.message);
     });
   };
 
