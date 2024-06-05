@@ -1,0 +1,13 @@
+services:
+  picking-front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3006:3006"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
